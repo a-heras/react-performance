@@ -1,5 +1,6 @@
 import type { YearData } from '../../types';
 import { formatNumber } from '../../utils/format-utils';
+import { memo } from 'react';
 
 import styles from './data-table.module.css';
 
@@ -9,7 +10,7 @@ type DataTableProps = {
   columns: string[];
 };
 
-export const DataTable = ({ data, year, columns }: DataTableProps) => {
+const DataTableComponent = ({ data, year, columns }: DataTableProps) => {
   const yearData = data.filter((d) => d.year === year);
 
   if (yearData.length === 0) {
@@ -35,3 +36,5 @@ export const DataTable = ({ data, year, columns }: DataTableProps) => {
     </table>
   );
 };
+
+export const DataTable = memo(DataTableComponent);
